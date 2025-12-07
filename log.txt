@@ -1,0 +1,65 @@
+Sorting Program || Logging || Time of exexution: 08.12.2025 1:28:12
+
+InDataFile: C:\Users\user\source\repos\CourseProject001\input_file.txt
+OutDataFile: C:\Users\user\source\repos\CourseProject001\output_file.txt
+TypeOfSort: all
+LogFile: C:\Users\user\source\repos\CourseProject001\log.txt
+StatisticFile: C:\Users\user\source\repos\CourseProject001\statistic.csv
+
+//////////////////  Sorting algorithms  ////////////////////
+
+BubbleSort`1:
+  Length of array: 10
+  Execution time: 0,25 мс;
+  Compairings: 44
+  Swaps: 25
+
+SelectionSort`1:
+  Length of array: 10
+  Execution time: 0,14 мс;
+  Compairings: 45
+  Swaps: 9
+
+InsertionSort`1:
+  Length of array: 10
+  Execution time: 0,08 мс;
+  Compairings: 31
+  Swaps: 25
+
+MergeSort`1:
+  Length of array: 10
+  Execution time: 0,18 мс;
+  Compairings: 21
+  Swaps: 0
+
+QuickSort`1:
+  Length of array: 10
+  Execution time: 0,10 мс;
+  Compairings: 26
+  Swaps: 24
+
+HeapSort`1:
+  Length of array: 10
+  Execution time: 0,12 мс;
+  Compairings: 36
+  Swaps: 25
+
+ShellSort`1:
+  Length of array: 10
+  Execution time: 0,08 мс;
+  Compairings: 27
+  Swaps: 9
+
+CountingSort:
+  Length of array: 10
+  Execution time: 42,01 мс;
+  Compairings: 18
+  Swaps: 0
+
+TimSort`1:
+  Length of array: 10
+  Execution time: 0,20 мс;
+  Compairings: 31
+  Swaps: 25
+
+

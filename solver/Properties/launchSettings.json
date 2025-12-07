@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "solver": {
+      "commandName": "Project",
+      "commandLineArgs": "--in_data_file C:\\Users\\user\\source\\repos\\CourseProject001\\input_file.txt -out_data_file C:\\Users\\user\\source\\repos\\CourseProject001\\output_file.txt --type_of_sort all -log_on C:\\Users\\user\\source\\repos\\CourseProject001\\log.txt -statistic_on C:\\Users\\user\\source\\repos\\CourseProject001\\statistic.csv"
+    }
+  }
+}
