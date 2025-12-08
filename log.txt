@@ -1,65 +1,84 @@
-Sorting Program || Logging || Time of exexution: 08.12.2025 1:28:12
+Sorting Program || Logging || Time of exexution: 08.12.2025 15:26:19
 
-InDataFile: C:\Users\user\source\repos\CourseProject001\input_file.txt
+LengthOfGeneration: 10000
 OutDataFile: C:\Users\user\source\repos\CourseProject001\output_file.txt
 TypeOfSort: all
 LogFile: C:\Users\user\source\repos\CourseProject001\log.txt
 StatisticFile: C:\Users\user\source\repos\CourseProject001\statistic.csv
+Check: True
 
 //////////////////  Sorting algorithms  ////////////////////
 
-BubbleSort`1:
-  Length of array: 10
-  Execution time: 0,25 мс;
-  Compairings: 44
-  Swaps: 25
+BubbleSort:
+  Length of array: 10000
+  Execution time: 402,20 мс;
+  Compairings: 49980465
+  Swaps: 24965560
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-SelectionSort`1:
-  Length of array: 10
-  Execution time: 0,14 мс;
-  Compairings: 45
-  Swaps: 9
+SelectionSort:
+  Length of array: 10000
+  Execution time: 260,85 мс;
+  Compairings: 49995000
+  Swaps: 9992
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-InsertionSort`1:
-  Length of array: 10
-  Execution time: 0,08 мс;
-  Compairings: 31
-  Swaps: 25
+InsertionSort:
+  Length of array: 10000
+  Execution time: 153,17 мс;
+  Compairings: 24975552
+  Swaps: 24965560
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-MergeSort`1:
-  Length of array: 10
-  Execution time: 0,18 мс;
-  Compairings: 21
+MergeSort:
+  Length of array: 10000
+  Execution time: 2,16 мс;
+  Compairings: 120398
   Swaps: 0
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-QuickSort`1:
-  Length of array: 10
-  Execution time: 0,10 мс;
-  Compairings: 26
-  Swaps: 24
+QuickSort:
+  Length of array: 10000
+  Execution time: 1,60 мс;
+  Compairings: 156252
+  Swaps: 84742
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-HeapSort`1:
-  Length of array: 10
-  Execution time: 0,12 мс;
-  Compairings: 36
-  Swaps: 25
+HeapSort:
+  Length of array: 10000
+  Execution time: 3,15 мс;
+  Compairings: 235311
+  Swaps: 124138
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-ShellSort`1:
-  Length of array: 10
-  Execution time: 0,08 мс;
-  Compairings: 27
-  Swaps: 9
+ShellSort:
+  Length of array: 10000
+  Execution time: 2,21 мс;
+  Compairings: 263919
+  Swaps: 148990
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
 CountingSort:
-  Length of array: 10
-  Execution time: 42,01 мс;
-  Compairings: 18
+  Length of array: 10000
+  Execution time: 5660,64 мс;
+  Compairings: 19998
   Swaps: 0
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
-TimSort`1:
-  Length of array: 10
-  Execution time: 0,20 мс;
-  Compairings: 31
-  Swaps: 25
+TimSort:
+  Length of array: 10000
+  Execution time: 2,36 мс;
+  Compairings: 171608
+  Swaps: 77108
+Checking was completed:  Array was sorted correctly    ^-^
+This out array is the same to first sorted   ^-^
 
 

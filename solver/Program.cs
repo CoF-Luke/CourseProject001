@@ -13,14 +13,14 @@ class Program
 
         //обязательные
         string? InDataFile = null;
-        string? OutDataFile = null;
         string? TypeOfSort = null;
         int? LengthOfGeneration = null;
 
         //необязательные
+        string? OutDataFile = null;
         string? LogFile = null;
         string? StatisticFile = null;
-        bool Copy = false;
+        bool Check = false;
 
 
         for (int i = 0; i < args.Length; i++)
@@ -53,16 +53,17 @@ class Program
             {
                 StatisticFile = args[i + 1];
             }
-            if (args[i] == "-copy")
+            if (args[i] == "-check")
             {
-                Copy = true;
+                Check = true;
             }
         }
 
         if (((InDataFile != null) || (LengthOfGeneration != null)) && (TypeOfSort != null))
         {
-            SortRunner Runner = new SortRunner(InDataFile, LengthOfGeneration, OutDataFile,
-                TypeOfSort, LogFile, StatisticFile, Copy);
+            SortRunner Runner = new SortRunner(InDataFile,
+                LengthOfGeneration, OutDataFile,
+                TypeOfSort, LogFile, StatisticFile, Check);
             Runner.Start();
         }
         else

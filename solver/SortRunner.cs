@@ -4,39 +4,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace solver
 {
     public class SortRunner
     {
-        protected string? InDataFile = null;
-        protected int? LengthOfGeneration = null;
+        protected string? InDataFile;
+        protected int? LengthOfGeneration;
 
         protected string TypeOfSort;
 
         bool Out = false;
-        protected string? OutDataFile = null;
+        protected string? OutDataFile;
 
         bool Log = false;
-        string? LogFile = null;
-        string logData;
+        string? LogFile;
+        string? logData;
 
         bool Statistic = false;
-        string? StatisticFile = null;
-        string statisticData;
+        string? StatisticFile;
+        string? statisticData;
 
-        bool Copy;
-        string? CopyFile;
+        bool Check = false;
 
         int[] array = Array.Empty<int>();
+        int[] outArray = Array.Empty<int>();
 
-        public SortRunner()
-        {
-            InDataFile = "";
-            OutDataFile = "";
-            TypeOfSort = "";
-        }
-        public SortRunner(string? inDataFile, int? lengthOfGeneration, string outDataFile, string typeOfSort, string? logFile, string? statisticFile, bool copy)
+
+        public SortRunner(string? inDataFile, int? lengthOfGeneration,
+            string? outDataFile, string typeOfSort, string? logFile,
+            string? statisticFile, bool check)
         {
             InDataFile = inDataFile;
             LengthOfGeneration = lengthOfGeneration;
@@ -60,7 +58,7 @@ namespace solver
                 StatisticFile = statisticFile;
             }
 
-            Copy = copy;
+            Check = check;
         }
 
         public void Start()
@@ -151,14 +149,14 @@ namespace solver
                 if (TypeOfSort != null) logData += $"TypeOfSort: {TypeOfSort}\n";
                 if (LogFile != null) logData += $"LogFile: {LogFile}\n";
                 if (StatisticFile != null) logData += $"StatisticFile: {StatisticFile}\n";
-                if (CopyFile != null) logData += $"CopyFile: {CopyFile}\n";
+                logData += $"Check: {Check}\n";
 
                 logData += $"\n//////////////////  Sorting algorithms  ////////////////////\n\n";
             }
 
             if (Statistic)
             {
-                statisticData = "Type,Length of array,Execution time,Compairings,Swaps\n";
+                statisticData = "Type;Length of array;Execution time;Compairings;Swaps\n";
             }
             
             
@@ -169,20 +167,67 @@ namespace solver
 
                 if (Log)
                 {
-                    logData += algorithm.GetLog(Statistic) + "\n";
+                    logData += algorithm.GetLog(Statistic);
                 }
                 if (Statistic)
                 {
                     statisticData += algorithm.GetStatistic() + "\n";
                 }
                 
+                if (Check && Log)
+                {
+                    bool flag = true;
+                    bool flagSameArray = true;
+
+                    int[] tempArray = algorithm.GetArray();
+                    if (outArray.Length == 0)
+                    {
+                        outArray = new int[tempArray.Length];
+                        tempArray.CopyTo(outArray, 0);
+
+                        for (int i = 0; i + 1 < outArray.Length; i++)
+                        {
+                            if (outArray[i] > outArray[i + 1])
+                            {
+                                flag = false;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i + 1 < tempArray.Length; i++)
+                        {
+                            if (tempArray[i] > tempArray[i + 1])
+                            {
+                                flag = false;
+                                break;
+                            }
+                            if (tempArray[i] != outArray[i])
+                            {
+                                flagSameArray = false;
+                            }
+                        }
+                    }
+
+                    if (flag)
+                    {
+                        logData += "Checking was completed:  Array was sorted correctly    ^-^\n";
+
+                        if (flagSameArray) logData += "This out array is the same to first sorted   ^-^\n";
+                        else logData += "This out array is the same to first sorted   !*-*!\n";
+                    }
+                    else
+                    {
+                        logData += "Checking was completed:  Array was not sorted  correctly!!!    !*-*!\n";
+                    }
+                }
+
+                if (Log) logData += "\n";
             }
 
             
-            //if (Out)
-            //{
-            //    WriteToFile(OutDataFile, )
-            //}
+            
 
             if (Log)
             {
@@ -192,6 +237,18 @@ namespace solver
             if (Statistic)
             {
                 WriteToFile(StatisticFile, statisticData);
+            }
+
+            if (Out)
+            {
+                if (outArray.Length != 0)
+                {
+                    WriteToFile(OutDataFile, outArray);
+                }
+                else
+                {
+                    throw new Exception("Невозможно записать данные в выходной файл: массив пуст.");
+                }
             }
         }
 
@@ -220,7 +277,7 @@ namespace solver
             using (var sr = new StreamReader(FileName))
             {
                 int length;
-                string line;
+                string? line;
                 if ((line = sr.ReadLine()) != null)
                 {
                     length = Convert.ToInt32(line);
@@ -238,8 +295,9 @@ namespace solver
             
         }
 
-        public void WriteToFile(string FileName, int[]? arr)
+        public void WriteToFile(string? FileName, int[]? arr)
         {
+            if (FileName == null || arr == null) return;
             using (var sw = new StreamWriter(FileName, false))
             {
                 for (int i = 0; i < arr.Length; i++)
@@ -249,8 +307,9 @@ namespace solver
             }
         }
 
-        public void WriteToFile(string FileName, string data)
+        public void WriteToFile(string? FileName, string? data)
         {
+            if (FileName == null || data == null) return;
             using (var sw = new StreamWriter(FileName, false))
             {
                 sw.WriteLine(data);

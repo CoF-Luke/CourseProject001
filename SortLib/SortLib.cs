@@ -6,7 +6,7 @@ namespace SortLib
     
     public abstract class Sort<T> where T : IComparable<T>
     {
-        protected T[] array;
+        protected T[] array = Array.Empty<T>();
         protected int comparisonCount;
         protected int swapCount;
         protected TimeSpan elapsedTime;
@@ -24,8 +24,7 @@ namespace SortLib
             SortArray();
             elapsedTime = DateTime.Now - startTime;
 
-            array.CopyTo(this.array, 0);
-
+            //array.CopyTo(this.array, 0);
         }
 
         public string GetLog(bool statistic)
@@ -33,7 +32,9 @@ namespace SortLib
             string output = "";
             if (statistic)
             {
-                output = $"{GetType().Name}:\n" +
+                string sortingName = GetType().Name;
+                if (sortingName.EndsWith("`1")) sortingName = sortingName[..^2];
+                output = $"{sortingName}:\n" +
                                 $"  Length of array: {array.Length}\n" +
                                 $"  Execution time: {elapsedTime.TotalMilliseconds:F2} мс;\n" +
                                 $"  Compairings: {comparisonCount}\n" +
@@ -51,12 +52,21 @@ namespace SortLib
         {
             string output = "";
 
-            output = $"{GetType().Name}," +
-                            $"{array.Length}," +
-                            $"{elapsedTime.TotalMilliseconds:F2}," +
-                            $"{comparisonCount}," +
+            string sortingName = GetType().Name;
+            if (sortingName.EndsWith("`1")) sortingName = sortingName[..^2];
+            output = $"{sortingName};" +
+                            $"{array.Length};" +
+                            $"{elapsedTime.TotalMilliseconds:F2};" +
+                            $"{comparisonCount};" +
                             $"{swapCount}";
             return output;
+        }
+
+        public T[] GetArray()
+        {
+            T[] result = new T[array.Length];
+            array.CopyTo(result, 0);
+            return result;
         }
 
         protected abstract void SortArray();
