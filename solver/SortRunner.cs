@@ -61,6 +61,7 @@ namespace solver
             Check = check;
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////
         public void Start()
         {
             //заполнение массива
@@ -89,7 +90,6 @@ namespace solver
                     new HeapSort<int>(),
                     new ShellSort<int>(),
                     new CountingSort(),
-                    //new RadixSort(),
                     new TimSort<int>()
                 };
             }
@@ -252,7 +252,7 @@ namespace solver
             }
         }
 
-
+        //////////////////////////////////////////////////////////////////////////////////////
 
 
         public void GenerateSequense(int length)

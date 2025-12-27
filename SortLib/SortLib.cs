@@ -351,49 +351,8 @@ namespace SortLib
         }
     }
 
-    // 9. Radix Sort (Поразрядная сортировка) - только для целых чисел
-    public class RadixSort : Sort<int>
-    {
-        protected override void SortArray()
-        {
-            int max = GetMax();
 
-            for (int exp = 1; max / exp > 0; exp *= 10)
-                CountingSortByDigit(exp);
-        }
-
-        private int GetMax()
-        {
-            int max = array[0];
-            for (int i = 1; i < array.Length; i++)
-                if (Compare(array[i], max) > 0)
-                    max = array[i];
-            return max;
-        }
-
-        private void CountingSortByDigit(int exp)
-        {
-            int n = array.Length;
-            int[] output = new int[n];
-            int[] count = new int[10];
-
-            for (int i = 0; i < n; i++)
-                count[(array[i] / exp) % 10]++;
-
-            for (int i = 1; i < 10; i++)
-                count[i] += count[i - 1];
-
-            for (int i = n - 1; i >= 0; i--)
-            {
-                output[count[(array[i] / exp) % 10] - 1] = array[i];
-                count[(array[i] / exp) % 10]--;
-            }
-
-            Array.Copy(output, array, n);
-        }
-    }
-
-    // 10. TimSort (Гибридная сортировка - комбинация Insertion Sort и Merge Sort)
+    // 9. TimSort (Гибридная сортировка - комбинация Insertion Sort и Merge Sort)
     public class TimSort<T> : Sort<T> where T : IComparable<T>
     {
         private const int RUN = 32;
