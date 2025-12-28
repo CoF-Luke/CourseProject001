@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SortLib
 {
-    
+
     public abstract class Sort<T> where T : IComparable<T>
     {
         protected T[] array = Array.Empty<T>();
@@ -54,11 +54,14 @@ namespace SortLib
 
             string sortingName = GetType().Name;
             if (sortingName.EndsWith("`1")) sortingName = sortingName[..^2];
+
+            string swapCountText = $"{swapCount}";
+            if (sortingName == "MergeSort" || sortingName == "CountingSort") swapCountText = "";
             output = $"{sortingName};" +
                             $"{array.Length};" +
                             $"{elapsedTime.TotalMilliseconds:F2};" +
                             $"{comparisonCount};" +
-                            $"{swapCount}";
+                            $"{swapCountText}";
             return output;
         }
 
@@ -435,48 +438,6 @@ namespace SortLib
                 j++;
                 k++;
             }
-        }
-    }
-
-    // Пример использования
-    class Program
-    {
-        static void Main()
-        {
-            int[] testArray = GenerateRandomArray(1000);
-
-            Console.WriteLine("Тестирование алгоритмов сортировки на массиве из 1000 элементов:");
-            Console.WriteLine("=============================================================\n");
-
-            Sort<int>[] algorithms = new Sort<int>[]
-            {
-            new BubbleSort<int>(),
-            new SelectionSort<int>(),
-            new InsertionSort<int>(),
-            new MergeSort<int>(),
-            new QuickSort<int>(),
-            new HeapSort<int>(),
-            new ShellSort<int>(),
-            new CountingSort(),
-            new RadixSort(),
-            new TimSort<int>()
-            };
-
-            foreach (var algorithm in algorithms)
-            {
-                algorithm.RunSort(testArray);
-            }
-        }
-
-        static int[] GenerateRandomArray(int size)
-        {
-            Random rnd = new Random();
-            int[] array = new int[size];
-            for (int i = 0; i < size; i++)
-            {
-                array[i] = rnd.Next(0, 10000);
-            }
-            return array;
         }
     }
 }

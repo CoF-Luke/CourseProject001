@@ -124,9 +124,6 @@ namespace solver
                         case 'c':
                             algorithms[i] = new CountingSort();
                             break;
-                        case 'r':
-                            algorithms[i] = new RadixSort();
-                            break;
                         case 't':
                             algorithms[i] = new TimSort<int>();
                             break;

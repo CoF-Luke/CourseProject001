@@ -34,7 +34,7 @@ class Program
             //или
             if (args[i] == "--generate" && i + 1 < args.Length)
             {
-                LengthOfGeneration = Convert.ToInt16(args[i + 1]);
+                LengthOfGeneration = Convert.ToInt32(args[i + 1]);
             }
             if (args[i] == "--type_of_sort" && i + 1 < args.Length)
             {
